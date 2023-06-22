@@ -5,7 +5,7 @@ from .models import Computer
 
 # Create your views here.
 def home(request):
-    title = "Bienvenidos, esta es la pagina principal"
+    title = "Bienvenidos, esta es la paginal "
     context ={
     "title" : title,
     }
