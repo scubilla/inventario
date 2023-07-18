@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ComputerForm
 from .models import Computer
 
@@ -33,4 +33,17 @@ def computer_list(request):
     }
     return render(request, "list_computer.html",context)
 
+def computer_edit(request, id=None):
+    instance = get_object_or_404(Computer, id=id)
+    form = ComputerForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return redirect('/computer_list')
+    context = {
+        "title": 'Edit ' + str(instance.computer_name),
+        "instance": instance,
+        "form": form,
+        }
+    return render(request, "add_computer.html", context)
 
