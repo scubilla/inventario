@@ -20,9 +20,9 @@ def computer_entry(request):
        return redirect("/computer_list")
 
     context = {
-    "title": title,
-    "form": form,
-    }
+        "title": title,
+        "form": form,
+        }
     return render(request, "add_computer.html",context)
 
 def computer_list(request):
@@ -43,9 +43,13 @@ def computer_edit(request, id=None):
         form.save_m2m()
         return redirect('/computer_list')
     context = {
-        "title": 'Edit ' + str(instance.computer_name),
+        "title": 'Editando ' + str(instance.computer_name),
         "instance": instance,
         "form": form,
         }
     return render(request, "add_computer.html", context)
 
+def computer_delete(request, id=None):
+    instance = get_object_or_404(Computer, id=id)
+    instance.delete()
+    return redirect('/computer_list')

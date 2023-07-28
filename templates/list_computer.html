@@ -61,6 +61,7 @@
         <th>S.O.</th>
         <th>USUARIO</th>
         <th>UBICACION</th>
+        <th>OPCIONES</th>
     </tr>
     {% for instance in queryset %}
     <tr>
@@ -71,6 +72,7 @@
         <td>{{instance.operating_system.all}}</td>
         <td>{{instance.users_name}}</td>
         <td>{{instance.location}}</td>
+        <td><a href="{% url 'computer_delete' id=instance.id %}">Eliminar</a></td>
     </tr>
     {% endfor %}
     </table>
