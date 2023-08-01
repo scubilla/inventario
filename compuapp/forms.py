@@ -11,15 +11,15 @@ class ComputerForm(forms.ModelForm):
        if (computer_name == ""):
            raise forms.ValidationError('Este campo no puede quedar vacio.')
 
-       for instance in Computer.objects.all():
-           if instance.computer_name == computer_name:
-              raise forms.ValidationError('El nombre ' + computer_name + ' ya existe.')
-
+       '''for instance in Computer.objects.all():
+               if instance.computer_name == computer_name:
+                  raise forms.ValidationError('El nombre ' + computer_name + ' ya existe.')
+       '''
        return computer_name
 
 class ComputerSearchForm(forms.ModelForm):
     class Meta:
         model = Computer
-        fields = ['computer_name','users_name']
+        fields = ['computer_name','users_name', 'export_to_CSV']
 
 

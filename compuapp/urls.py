@@ -7,6 +7,6 @@ urlpatterns = [
     path('computer_list/', views.computer_list, name='computer_list'),
     path('computer_list/(?P<id>\d+)/$', views.computer_edit, name='computer_edit'),
     path('computer_list/(?P<id>\d+)/delete$', views.computer_delete, name='computer_delete'),
+    path('computerhistory_list/', views.computerhistory_list, name='computerhistory_list'),
     ]
-
 

@@ -84,6 +84,18 @@ DATABASES = {
     }
 }
 
+'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'compinventory',
+        'USER': 'youtube',
+        'PASSWORD': 'drds2023',
+    }
+}
+
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
