@@ -1,7 +1,7 @@
 {% load static %}
-{% load crispy_forms_tags %}
 
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -50,62 +50,30 @@
   <body>
   {% include 'navbar.html'  %}
 
-  {% if request.user.is_authenticated %}
-  <main role="main" class="container">
-
+    <main role="main" class="container">
       <div class="jumbotron">
+        <h1>  {{title}}</h1>
+        <p class="lead"></p>
 
-        {% if messages %}
-            <ul class="messages">
-                   {% for message in messages %}
-                         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                   {% endfor %}
-           </ul>
-        {% endif %}
+        <div class='col-sm-3'>
+            <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">Login</a>
+         </div>
+         <!-- <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">Login</a -->
 
-        <h1 class="title">{{title}}</h1>
-        <form method="post" action="">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input class="btn btn-primary" type="submit" value="Search" />
-        </form>
-        <table>
-        <tr>
-            <th>#</th>
-            <th>NOMBRE PC</th>
-            <th>DIRECCION IP</th>
-            <th>MAC</th>
-            <th>S.O.</th>
-            <th>USUARIO</th>
-            <th>UBICACION</th>
-            <th>OPCIONES</th>
-        </tr>
-        {% for instance in queryset %}
-        <tr>
-            <td>{{forloop.counter}}</td>
-            {% if perms.djangoapp.change_computer %}
-               <td><a href="{% url 'computer_edit' id=instance.id %}"> {{instance.computer_name}}</td>
-            {% else %}
-               <td>{{instance.computer_name}}</td>
-            {% endif %}
-            <td>{{instance.IP_address}}</td>
-            <td>{{instance.MAC_address}}</td>
-            <td>{{instance.operating_system.all}}</td>
-            <td>{{instance.users_name}}</td>
-            <td>{{instance.location}}</td>
-            {% if perms.djangoapp.add_computer %}
-               <td><a href="{% url 'computer_delete' id=instance.id %}">Eliminar</a></td>
-            {% else %}
-               <td>Eliminar</td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-        </table>
+        <div class='col-sm-3'>
+            {% block title %}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+         </div>
+
       </div>
 
-  </main>
-{% else %}Para conectarse haga clic <a href="/accounts/login"> aqui</a>
-{% endif %}
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
 </html>

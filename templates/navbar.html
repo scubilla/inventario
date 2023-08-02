@@ -8,20 +8,23 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/computer_list">Lista de Equipos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/computer_entry" tabindex="-1" aria-disabled="true">Alta Equipo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/computerhistory_list">Historial</a>
-      </li>
+      {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="/computer_list">Lista de Equipos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/computer_entry" tabindex="-1" aria-disabled="true">Alta Equipo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/computerhistory_list">Historial</a>
+          </li>
+      {% endif %}
 
     </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    {% if request.user.is_authenticated %}
+        <li><a href="/accounts/logout">Logout </a> </li>
+    {% else %}
+        <li><a href="/accounts/login">Login </a> </li>
+    {% endif %}
   </div>
 </nav>

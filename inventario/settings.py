@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'crispy_forms',
     'crispy_bootstrap4',
     'compuapp',
+    'registration',  # should be immediately above 'django.contrib.auth'
 ]
 
 MIDDLEWARE = [
@@ -144,3 +146,9 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+

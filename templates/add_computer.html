@@ -56,14 +56,17 @@
         <main role="main" class="container">
           <div class="jumbotron">
               <div class="row">
-                <div class="col-sm-6">
-                    <h1>  {{title}}</h1>
-                     <form method="post" action="">
+                  {% if request.user.is_authenticated %}
+                  <div class="col-sm-6">
+                        <h1>  {{title}}</h1>
+                        <form method="post" action="">
                               {% csrf_token %}
                               {{form.as_p}}
                               <input class="btn btn-primary" type="submit" value="Save" />
-                      </form>
-                </div>
+                        </form>
+                  </div>
+                  {% else %}Para conectarse haga clic <a href="/accounts/login"> aqui</a>
+                  {% endif %}
               </div>
           </div>
         </main>
