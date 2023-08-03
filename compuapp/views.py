@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ComputerForm, ComputerSearchForm
+from .forms import ComputerForm, ComputerSearchForm, OperatingSystemForm
 from .models import Computer, ComputerHistory
 from django.http import HttpResponse
 import csv
@@ -99,4 +99,17 @@ def computerhistory_list(request):
        "queryset": queryset,
     }
     return render(request, "computerhistory_list.html",context)
+
+def settings(request):
+    title = 'Agregar Sistema Operativo'
+    form = OperatingSystemForm(request.POST or None)
+    if form.is_valid():
+       form.save()
+       messages.success(request, 'Los datos han sido guardados satisfactoriamente.')
+       return redirect('/computer_list')
+    context = {
+              "title": title,
+              "form": form,
+    }
+    return render(request, "settings.html",context)
 

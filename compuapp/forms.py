@@ -1,5 +1,5 @@
 from django import forms
-from .models import Computer
+from .models import Computer, Operating_system
 
 class ComputerForm(forms.ModelForm):
    class Meta:
@@ -22,4 +22,9 @@ class ComputerSearchForm(forms.ModelForm):
         model = Computer
         fields = ['computer_name','users_name', 'export_to_CSV']
 
+
+class OperatingSystemForm(forms.ModelForm):
+    class Meta:
+        model =  Operating_system
+        fields = ['operating_system']
 

@@ -9,5 +9,6 @@ urlpatterns = [
     path('computer_list/(?P<id>\d+)/delete$', views.computer_delete, name='computer_delete'),
     path('computerhistory_list/', views.computerhistory_list, name='computerhistory_list'),
     path('accounts/', include('registration.backends.default.urls')),
+    path('settings/', views.settings, name='settings'),
     ]
 
