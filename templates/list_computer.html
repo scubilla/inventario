@@ -64,11 +64,13 @@
         {% endif %}
 
         <h1 class="title">{{title}}</h1>
-        <form method="post" action="">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input class="btn btn-primary" type="submit" value="Search" />
-        </form>
+          <div class="flt-search">
+            <form method="post" action="">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input class="btn btn-primary" type="submit" value="Search" />
+            </form>
+          </div>
         <table>
         <tr>
             <th>#</th>
@@ -84,7 +86,7 @@
         <tr>
             <td>{{forloop.counter}}</td>
             {% if perms.djangoapp.change_computer %}
-               <td><a href="{% url 'computer_edit' id=instance.id %}"> {{instance.computer_name}}</td>
+               <td><a href="{% url 'computer_edit' id=instance.id %}" data-toggle="tooltip" title="Editar este registro"> {{instance.computer_name}}</td>
             {% else %}
                <td>{{instance.computer_name}}</td>
             {% endif %}
@@ -94,9 +96,9 @@
             <td>{{instance.users_name}}</td>
             <td>{{instance.location}}</td>
             {% if perms.djangoapp.add_computer %}
-               <td><a href="{% url 'computer_delete' id=instance.id %}">Eliminar</a></td>
+               <td><a href="{% url 'computer_delete' id=instance.id %}" data-toggle="tooltip" title="Eliminar este registro"><img src="{% static 'img/del.png' %}"></a></td>
             {% else %}
-               <td>Eliminar</td>
+               <td></td>
             {% endif %}
         </tr>
         {% endfor %}
